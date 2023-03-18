@@ -1,0 +1,13 @@
+td {
+  overflow: word-wrap;
+}
+
+.small {
+  max-width: 80px;
+  overflow-wrap: break-word;
+}
+
+input[type=text] {
+  width: 80%;
+  overflow-wrap: break-word;
+}/*# sourceMappingURL=index.css.map */

@@ -1,0 +1,14 @@
+td{
+    // max-width: 100px;
+    overflow: word-wrap;
+}
+
+.small{
+    max-width: 80px;
+    overflow-wrap: break-word;
+}
+
+input[type="text"]{
+    width : 80%;
+    overflow-wrap: break-word;
+}
