@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import generatekey from './generatekey';
+import ModifyElement from './ModifyDataElement';
+import AddNewElement from './CreateNewElement';
+import returnJson from './ts/returnJsonfile';
 
 interface DataTableElement {
   id: number,
@@ -15,37 +17,6 @@ interface DataTableElement {
   relationship: string,
   status: string,
 }
-
-function ModifyElement({data, setData, usId, Modify, setModify, ModifyData, setModifyData}:{data: DataTableElement[], setData: React.Dispatch<React.SetStateAction<DataTableElement[]>>, usId: number, Modify: any, setModify: React.Dispatch<React.SetStateAction<any>>, ModifyData: any, setModifyData: React.Dispatch<React.SetStateAction<any>>;}) {
-  const startModify = () => {
-    if(Modify === usId) {
-      setModify(null);
-      setData(data.map((row) => {
-        if(row.id === usId) {
-          return {...row, ...ModifyData};
-        }
-        return row;
-      }));
-      return;
-    }
-    let toprovide:number = generatekey();
-    let anserw:any = prompt("Please enter " +  toprovide + " to modify this element")
-    if(anserw !== toprovide.toString()) {return;}
-    setModify(usId);
-    setModifyData(data.find((row) => row.id === usId) as DataTableElement);
-  };
-
-  const cancelModify = () => {
-    setModify(null);
-  };
-  
-  return <div>
-      <button onClick={startModify}>{Modify === usId ? "Save" : "Modify"}</button>  
-      {Modify === usId ? <button onClick={cancelModify}>Cancel</button> : null }
-      {Modify === usId ? <button onClick={() => {setModify(null); setData(data.filter((row) => row.id !== usId));}}>Delete</button> : null}
-  </div>
-}
-
 
 function DataTable({setData, data}: {setData: React.Dispatch<React.SetStateAction<DataTableElement[]>>, data: DataTableElement[];}) {
   const [Modify, setModify] = useState<any>(0);
@@ -68,6 +39,8 @@ function DataTable({setData, data}: {setData: React.Dispatch<React.SetStateActio
           <th>Status</th>
           <th><br/></th>
           <th>Tools</th>
+          <th><button onClick={() => AddNewElement({data, setData, setModify})}>Add new</button></th>
+          <th><button onClick={() => returnJson(data)}>Create Copy</button></th>
         </tr>
       </thead>
       <tbody>

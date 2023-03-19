@@ -40,7 +40,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className="App-header">Hello World... I may replace this later </h1>
+      <h1 className="App-header">Database</h1>
       <div className="GetJsonDataButton">
         <input type="file" onChange={handleJsonUpload} />
       </div>
