@@ -10,4 +10,9 @@ td {
 input[type=text] {
   width: 80%;
   overflow-wrap: break-word;
+}
+
+.DataTableContainer {
+  overflow-x: break-word;
+  width: 70%;
 }/*# sourceMappingURL=index.css.map */

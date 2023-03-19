@@ -44,7 +44,9 @@ function App() {
       <div className="GetJsonDataButton">
         <input type="file" onChange={handleJsonUpload} />
       </div>
+      <div className="DataTableContainer">
       <DataTable data={data} setData={setData} />
+      </div>
     </div>
   );
 }

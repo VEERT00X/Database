@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import generatekey from './generatekey';
 
 interface DataTableElement {
   id: number,
@@ -15,32 +16,40 @@ interface DataTableElement {
   status: string,
 }
 
-interface DataTableProps {
-  data: DataTableElement[];
-}
-
-function DeleteElement({data, setData, usId}: {data: DataTableElement[], setData: React.Dispatch<React.SetStateAction<DataTableElement[]>>, usId: number;}) {
-  const handleDelete = () => {
-    console.log("Deleting element with id of " + usId);
-    setData(data.filter((row) => row.id !== usId));
-  };  
-  return (
-    <button onClick={handleDelete}>Delete</button>
-  );
-}
-
-function ModifyElement({data, setData, usId, Modify, setModify}: {data: DataTableElement[], setData: React.Dispatch<React.SetStateAction<DataTableElement[]>>, usId: number, Modify: number, setModify: React.Dispatch<React.SetStateAction<number>>;}) {
+function ModifyElement({data, setData, usId, Modify, setModify, ModifyData, setModifyData}:{data: DataTableElement[], setData: React.Dispatch<React.SetStateAction<DataTableElement[]>>, usId: number, Modify: any, setModify: React.Dispatch<React.SetStateAction<any>>, ModifyData: any, setModifyData: React.Dispatch<React.SetStateAction<any>>;}) {
   const startModify = () => {
+    if(Modify === usId) {
+      setModify(null);
+      setData(data.map((row) => {
+        if(row.id === usId) {
+          return {...row, ...ModifyData};
+        }
+        return row;
+      }));
+      return;
+    }
+    let toprovide:number = generatekey();
+    let anserw:any = prompt("Please enter " +  toprovide + " to modify this element")
+    if(anserw !== toprovide.toString()) {return;}
     setModify(usId);
+    setModifyData(data.find((row) => row.id === usId) as DataTableElement);
   };
-  return (
-    <button onClick={startModify}>Modify</button>
-  );
+
+  const cancelModify = () => {
+    setModify(null);
+  };
+  
+  return <div>
+      <button onClick={startModify}>{Modify === usId ? "Save" : "Modify"}</button>  
+      {Modify === usId ? <button onClick={cancelModify}>Cancel</button> : null }
+      {Modify === usId ? <button onClick={() => {setModify(null); setData(data.filter((row) => row.id !== usId));}}>Delete</button> : null}
+  </div>
 }
 
 
 function DataTable({setData, data}: {setData: React.Dispatch<React.SetStateAction<DataTableElement[]>>, data: DataTableElement[];}) {
-  const [Modify, setModify] = useState<number>(0);
+  const [Modify, setModify] = useState<any>(0);
+  const [ModifyData, setModifyData] = useState<any>({});
   return (
     <table>
       <thead>
@@ -57,8 +66,8 @@ function DataTable({setData, data}: {setData: React.Dispatch<React.SetStateActio
           <th>Country</th>
           <th>Relationship</th>
           <th>Status</th>
-          <th>Delete</th>
-          <th>Modify</th>
+          <th><br/></th>
+          <th>Tools</th>
         </tr>
       </thead>
       <tbody>
@@ -80,21 +89,21 @@ function DataTable({setData, data}: {setData: React.Dispatch<React.SetStateActio
             </>
           : 
             <>
-            <td><input type="text" value={row.name} onChange={(e) => setData(data.map((row) => row.id === Modify ? {...row, name: e.target.value} : row))}/></td>
-            <td><input type="text" value={row.surname} onChange={(e) => setData(data.map((row) => row.id === Modify ? {...row, surname: e.target.value} : row))}/></td>
-            <td><input type="text" value={row.nickname} onChange={(e) => setData(data.map((row) => row.id === Modify ? {...row, nickname: e.target.value} : row))}/></td>
-            <td><input type="text" value={row.age} onChange={(e) => setData(data.map((row) => row.id === Modify ? {...row, age: e.target.value} : row))}/></td>
-            <td><input type="text" value={row.email} className='small' onChange={(e) => setData(data.map((row) => row.id === Modify ? {...row, email: e.target.value} : row))}/></td>
-            <td><input type="text" value={row.telephone} onChange={(e) => setData(data.map((row) => row.id === Modify ? {...row, telephone: e.target.value} : row))}/></td>
-            <td><input type="text" value={row.address} onChange={(e) => setData(data.map((row) => row.id === Modify ? {...row, address: e.target.value} : row))}/></td>
-            <td><input type="text" value={row.city} onChange={(e) => setData(data.map((row) => row.id === Modify ? {...row, city: e.target.value} : row))}/></td>
-            <td><input type="text" value={row.country} onChange={(e) => setData(data.map((row) => row.id === Modify ? {...row, country: e.target.value} : row))}/></td>
-            <td><input type="text" value={row.relationship} onChange={(e) => setData(data.map((row) => row.id === Modify ? {...row, relationship: e.target.value} : row))}/></td>
-            <td><input type="text" value={row.status} onChange={(e) => setData(data.map((row) => row.id === Modify ? {...row, status: e.target.value} : row))}/></td>
+            <td><input type="text" value={ModifyData.name} onChange={(e) => setModifyData({...ModifyData, name: e.target.value})}/></td>
+            <td><input type="text" value={ModifyData.surname} onChange={(e) => setModifyData({...ModifyData, surname: e.target.value})}/></td>
+            <td><input type="text" value={ModifyData.nickname} onChange={(e) => setModifyData({...ModifyData, nickname: e.target.value})}/></td>
+            <td><input type="text" value={ModifyData.age} onChange={(e) => setModifyData({...ModifyData, age: e.target.value})}/></td>
+            <td><input type="text" value={ModifyData.email} onChange={(e) => setModifyData({...ModifyData, email: e.target.value})}/></td>
+            <td><input type="text" value={ModifyData.telephone} onChange={(e) => setModifyData({...ModifyData, telephone: e.target.value})}/></td>
+            <td><input type="text" value={ModifyData.address} onChange={(e) => setModifyData({...ModifyData, address: e.target.value})}/></td>
+            <td><input type="text" value={ModifyData.city} onChange={(e) => setModifyData({...ModifyData, city: e.target.value})}/></td>
+            <td><input type="text" value={ModifyData.country} onChange={(e) => setModifyData({...ModifyData, country: e.target.value})}/></td>
+            <td><input type="text" value={ModifyData.relationship} onChange={(e) => setModifyData({...ModifyData, relationship: e.target.value})}/></td>
+            <td><input type="text" value={ModifyData.status} onChange={(e) => setModifyData({...ModifyData, status: e.target.value})}/></td>
             </>
           }
-            <td><DeleteElement data={data} setData={setData} usId={row.id}/></td>
-            <td><ModifyElement data={data} setData={setData} Modify={Modify} setModify={setModify} usId={row.id}/></td>
+            <td><br/></td>
+            <td><ModifyElement data={data} setData={setData} Modify={Modify} setModify={setModify} usId={row.id} ModifyData={ModifyData} setModifyData={setModifyData} /></td>
           </tr>
         ))}
       </tbody>
