@@ -38,6 +38,22 @@ function App() {
     reader.readAsText(file);
   }
 
+  const columns: any[] = [
+    { name: 'id', type: 'number' },
+    { name: 'name', type: 'string' },
+    { name: 'surname', type: 'string' },
+    { name: 'nickname', type: 'string' },
+    { name: 'age', type: 'number' },
+    { name: 'email', type: 'string' },
+    { name: 'telephone', type: 'string' },
+    { name: 'address', type: 'string' },
+    { name: 'city', type: 'string' },
+    { name: 'country', type: 'string' },
+    { name: 'relationship', type: 'string' },
+    { name: 'status', type: 'string' },
+    { name: 'color', type: 'string'}
+  ];
+  
   return (
     <div className="App">
       <h1 className="App-header">Database</h1>
@@ -45,7 +61,7 @@ function App() {
         <input type="file" onChange={handleJsonUpload} />
       </div>
       <div className="DataTableContainer">
-      <DataTable data={data} setData={setData} />
+      <DataTable setData={setData} data={data} columns={columns} />
       </div>
     </div>
   );
