@@ -13,22 +13,21 @@ function App() {
   function handleJsonUpload(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
     if (!file) return;
-
+  
     if (!file.type.includes('json')) {
       alert('Only JSON files are allowed!');
       return;
     }
-
+  
     const reader = new FileReader();
     reader.onload = function() {
       const text = reader.result;
       const json = JSON.parse(text as string);
       const { data, config } = json;
       setData(data);
-
+  
       // Use config to set columns
-      const newColumns = Object.entries(config).map(([name, type]) => ({ name, type }));
-      setColumns(newColumns);
+      setColumns(config);
     }
     reader.readAsText(file);
   }
