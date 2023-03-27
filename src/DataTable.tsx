@@ -52,7 +52,7 @@ function DataTable({ setData, data, columns }: DataTableProps) {
             </button>
           </th>
           <th>
-            <button onClick={() => returnJson(data)}>Create Copy</button>
+            <button onClick={() => returnJson(data, columns)}>Create Copy</button>
           </th>
         </tr>
       </thead>
