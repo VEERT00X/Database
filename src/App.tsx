@@ -36,10 +36,10 @@ function App() {
     <div className="App">
       <h1 className="App-header">Database</h1>
       <div className="GetJsonDataButton">
-        <input type="file" onChange={handleJsonUpload} />
+        {data.length == 0 && <input type="file" onChange={handleJsonUpload} />}
       </div>
-      <div className="DataTableContainer">
-        <DataTable setData={setData} data={data} columns={columns} />
+      <div className="DataTable">
+        {data.length > 0 && <DataTable setData={setData} data={data} columns={columns} setColumns={setColumns} />}
       </div>
     </div>
   );

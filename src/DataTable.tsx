@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ModifyElement from './ModifyDataElement';
 import AddNewElement from './CreateNewElement';
 import returnJson from './ts/returnJsonfile';
+import EditTableIndexes from './EditTableIndexes';
 
 type DataType = 'string' | 'number'; // define possible data types
 
@@ -12,16 +13,18 @@ interface Column {
 
 interface DataTableProps {
   setData: React.Dispatch<React.SetStateAction<any[]>>;
+  setColumns: React.Dispatch<React.SetStateAction<Column[]>>;
   data: any[];
   columns: Column[];
 }
 
-function DataTable({ setData, data, columns }: DataTableProps) {
+function DataTable({ setData ,data, columns, setColumns }: DataTableProps) {
   const [modify, setModify] = useState<any>(0);
   const [modifyData, setModifyData] = useState<any>({});
+  const [modifyColumns, setModifyColumns] = useState<any>(0);
 
   const renderCell = (row: any, column: Column) => {
-    if (modify === row.id) {
+    if (modify === row.id && column.name !== "id"){
       return (
         <td>
           <input
@@ -41,22 +44,27 @@ function DataTable({ setData, data, columns }: DataTableProps) {
     <table>
       <thead>
         <tr>
-          {columns.map((column) => (
-            <th key={column.name}>{column.name}</th>
-          ))}
-          <th><br /></th>
-          <th>Tools</th>
-          <th>
+          {modifyColumns == 0 && <>
+            {columns.map((column) => (
+              <th key={column.name}>{column.name}</th>
+            ))}
+            <th><br /></th>
+            <th>Tools</th>
+            <th>
             <button onClick={() => AddNewElement({ data, setData, setModify })}>
-              Add new
+              Add new element
             </button>
-          </th>
+            </th>
+            <th>
+              <button onClick={() => returnJson(data, columns)}>Create Copy</button>
+            </th>
+          </>}
           <th>
-            <button onClick={() => returnJson(data, columns)}>Create Copy</button>
+            <EditTableIndexes columns={columns} setColumns={setColumns} modifyColumns={modifyColumns} setModifyColumns={setModifyColumns} />
           </th>
-        </tr>
+          </tr>
       </thead>
-      <tbody>
+      <tbody>{modifyColumns == 0 && <>
         {data.map((row) => (
           <tr key={row.id}>
             {columns.map((column) => (
@@ -76,6 +84,7 @@ function DataTable({ setData, data, columns }: DataTableProps) {
             </td>
           </tr>
         ))}
+        </>}
       </tbody>
     </table>
   );
