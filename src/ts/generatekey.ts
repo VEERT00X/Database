@@ -1,4 +1,7 @@
-function generatekey() {
+function generatekey(config: boolean) {
+  if (config === false) {
+    return true;
+  }
   let key: number = Math.floor(Math.random() * 1000000);
   let answ: any = prompt("Enter " + key + " to continue");
   if (answ == key) {

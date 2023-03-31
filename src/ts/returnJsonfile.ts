@@ -1,5 +1,5 @@
-function returnJson(data: any, config: any) {
-  const jsonData = { data, config };
+function returnJson(data: any, columns: any, config: any) {
+  const jsonData = { data, columns, config };
   let url =
     "data:text/json;charset=utf-8," +
     encodeURIComponent(JSON.stringify(jsonData));

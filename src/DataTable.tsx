@@ -16,9 +16,16 @@ interface DataTableProps {
   setColumns: React.Dispatch<React.SetStateAction<Column[]>>;
   data: any[];
   columns: Column[];
+  config: any;
 }
 
-function DataTable({ setData, data, columns, setColumns }: DataTableProps) {
+function DataTable({
+  setData,
+  data,
+  columns,
+  setColumns,
+  config,
+}: DataTableProps) {
   const [modify, setModify] = useState<any>(0);
   const [modifyData, setModifyData] = useState<any>({});
   const [modifyColumns, setModifyColumns] = useState<any>(0);
@@ -49,6 +56,7 @@ function DataTable({ setData, data, columns, setColumns }: DataTableProps) {
             setColumns={setColumns}
             modifyColumns={modifyColumns}
             setModifyColumns={setModifyColumns}
+            config={config}
             text="Edit columns"
           />
         </th>
@@ -56,13 +64,15 @@ function DataTable({ setData, data, columns, setColumns }: DataTableProps) {
           <>
             <th>
               <button
-                onClick={() => AddNewElement({ data, setData, setModify })}
+                onClick={() =>
+                  AddNewElement({ data, setData, setModify, config })
+                }
               >
                 New element
               </button>
             </th>
             <th>
-              <button onClick={() => returnJson(data, columns)}>
+              <button onClick={() => returnJson(data, columns, config)}>
                 Save JSON
               </button>
             </th>
@@ -97,6 +107,7 @@ function DataTable({ setData, data, columns, setColumns }: DataTableProps) {
                       usId={row.id}
                       ModifyData={modifyData}
                       setModifyData={setModifyData}
+                      config={config}
                     />
                   </td>
                 </tr>

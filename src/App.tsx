@@ -3,12 +3,13 @@ import DataTable from "./DataTable";
 import "./scss/index.css";
 
 interface DataTableElement {
-  [key: string]: string | number;
+  [key: string]: string | number | boolean;
 }
 
 function App() {
   const [data, setData] = useState<DataTableElement[]>([]);
   const [columns, setColumns] = useState<any[]>([]);
+  const [config, setConfig] = useState<any[]>([]);
 
   function handleJsonUpload(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
@@ -23,11 +24,10 @@ function App() {
     reader.onload = function () {
       const text = reader.result;
       const json = JSON.parse(text as string);
-      const { data, config } = json;
+      const { data, columns, config } = json;
       setData(data);
-
-      // Use config to set columns
-      setColumns(config);
+      setColumns(columns);
+      setConfig(config);
     };
     reader.readAsText(file);
   }
@@ -45,6 +45,7 @@ function App() {
             data={data}
             columns={columns}
             setColumns={setColumns}
+            config={config}
           />
         )}
       </div>

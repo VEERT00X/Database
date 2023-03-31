@@ -23,6 +23,7 @@ function ModifyElement({
   setModify,
   ModifyData,
   setModifyData,
+  config,
 }: {
   data: DataTableElement[];
   setData: React.Dispatch<React.SetStateAction<DataTableElement[]>>;
@@ -31,6 +32,7 @@ function ModifyElement({
   setModify: React.Dispatch<React.SetStateAction<any>>;
   ModifyData: any;
   setModifyData: React.Dispatch<React.SetStateAction<any>>;
+  config: any;
 }) {
   const startModify = () => {
     if (Modify === usId) {
@@ -45,7 +47,7 @@ function ModifyElement({
       );
       return;
     }
-    if (generatekey() === false) {
+    if (generatekey(config.promptcheck) === false) {
       return;
     }
     setModify(usId);

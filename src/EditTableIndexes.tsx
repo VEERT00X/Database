@@ -1,5 +1,6 @@
 import React from "react";
 import { render } from "react-dom";
+import generatekey from "./ts/generatekey";
 
 type DataType = "string" | "number"; // define possible data types
 
@@ -17,6 +18,7 @@ interface EditTableIndexesProps extends DataTableProps {
   modifyColumns: number;
   text: string;
   setModifyColumns: React.Dispatch<React.SetStateAction<number>>;
+  config: any;
 }
 
 export default function EditTableIndexes({
@@ -24,15 +26,24 @@ export default function EditTableIndexes({
   setColumns,
   modifyColumns,
   setModifyColumns,
-  text
+  text,
+  config,
 }: EditTableIndexesProps) {
+  const isConfigured = () => {
+    let res = generatekey(config);
+    if (res === false) {
+      setModifyColumns(0);
+    }
+    setModifyColumns(1);
+  };
+
   return (
     <>
       {modifyColumns === 0 && (
         <button
           type="button"
           className="btn btn-primary"
-          onClick={() => setModifyColumns(1)}
+          onClick={() => isConfigured()}
         >
           {text}
         </button>
