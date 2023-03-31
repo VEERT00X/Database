@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import DataTable from './DataTable';
-import './scss/index.css';
+import React, { useState } from "react";
+import DataTable from "./DataTable";
+import "./scss/index.css";
 
 interface DataTableElement {
   [key: string]: string | number;
@@ -13,22 +13,22 @@ function App() {
   function handleJsonUpload(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
     if (!file) return;
-  
-    if (!file.type.includes('json')) {
-      alert('Only JSON files are allowed!');
+
+    if (!file.type.includes("json")) {
+      alert("Only JSON files are allowed!");
       return;
     }
-  
+
     const reader = new FileReader();
-    reader.onload = function() {
+    reader.onload = function () {
       const text = reader.result;
       const json = JSON.parse(text as string);
       const { data, config } = json;
       setData(data);
-  
+
       // Use config to set columns
       setColumns(config);
-    }
+    };
     reader.readAsText(file);
   }
 
@@ -39,7 +39,14 @@ function App() {
         {data.length == 0 && <input type="file" onChange={handleJsonUpload} />}
       </div>
       <div className="DataTable">
-        {data.length > 0 && <DataTable setData={setData} data={data} columns={columns} setColumns={setColumns} />}
+        {data.length > 0 && (
+          <DataTable
+            setData={setData}
+            data={data}
+            columns={columns}
+            setColumns={setColumns}
+          />
+        )}
       </div>
     </div>
   );

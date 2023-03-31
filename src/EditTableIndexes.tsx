@@ -1,7 +1,7 @@
-import React from 'react';
-import { render } from 'react-dom';
+import React from "react";
+import { render } from "react-dom";
 
-type DataType = 'string' | 'number'; // define possible data types
+type DataType = "string" | "number"; // define possible data types
 
 interface Column {
   name: string;
@@ -18,11 +18,20 @@ interface EditTableIndexesProps extends DataTableProps {
   setModifyColumns: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export default function EditTableIndexes({ columns, setColumns, modifyColumns, setModifyColumns }: EditTableIndexesProps) {
+export default function EditTableIndexes({
+  columns,
+  setColumns,
+  modifyColumns,
+  setModifyColumns,
+}: EditTableIndexesProps) {
   return (
     <>
       {modifyColumns === 0 && (
-        <button type="button" className="btn btn-primary" onClick={() => setModifyColumns(1)}>
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={() => setModifyColumns(1)}
+        >
           Edit Table Columns
         </button>
       )}
@@ -33,26 +42,65 @@ export default function EditTableIndexes({ columns, setColumns, modifyColumns, s
               <tr>
                 {columns.map((column, index) => (
                   <td key={index}>
-                    {index !== 0 &&
-                    <input
-                      type="text"
-                      value={column.name}
-                      onChange={(e) => {
-                        const newColumns = [...columns];
-                        newColumns[index].name = e.target.value;
-                        setColumns(newColumns);
-                      }}
-                    />
-                    }
+                    {index !== 0 && (
+                      <input
+                        type="text"
+                        value={column.name}
+                        onChange={(e) => {
+                          const newColumns = [...columns];
+                          newColumns[index].name = e.target.value;
+                          setColumns(newColumns);
+                        }}
+                      />
+                    )}
                   </td>
                 ))}
                 <td>
-                  <button type="button" className="btn btn-primary" onClick={() => setModifyColumns(0)}>
-                    Done
-                  </button>
+                  <p>Tools</p>
                 </td>
               </tr>
             </thead>
+            <tbody>
+              <tr>
+                {columns.map((column, index) => (
+                  <td key={index + column.name + column.type}>
+                    {index !== 0 && (
+                      <button
+                        type="button"
+                        className="btn btn-primary"
+                        onClick={() => {
+                          const newColumns = [...columns];
+                          newColumns.splice(index, 1);
+                          setColumns(newColumns);
+                        }}
+                      >
+                        Delete
+                      </button>
+                    )}
+                  </td>
+                ))}
+                <td>
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={() => {
+                      const newColumns = [...columns];
+                      newColumns.push({ name: "New Column", type: "string" });
+                      setColumns(newColumns);
+                    }}
+                  >
+                    New
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={() => setModifyColumns(0)}
+                  >
+                    Save
+                  </button>
+                </td>
+              </tr>
+            </tbody>
           </table>
         </div>
       )}
