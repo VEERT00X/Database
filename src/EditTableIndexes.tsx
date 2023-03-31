@@ -15,6 +15,7 @@ interface DataTableProps {
 
 interface EditTableIndexesProps extends DataTableProps {
   modifyColumns: number;
+  text: string;
   setModifyColumns: React.Dispatch<React.SetStateAction<number>>;
 }
 
@@ -23,6 +24,7 @@ export default function EditTableIndexes({
   setColumns,
   modifyColumns,
   setModifyColumns,
+  text
 }: EditTableIndexesProps) {
   return (
     <>
@@ -32,7 +34,7 @@ export default function EditTableIndexes({
           className="btn btn-primary"
           onClick={() => setModifyColumns(1)}
         >
-          Edit Table Columns
+          {text}
         </button>
       )}
       {modifyColumns === 1 && (

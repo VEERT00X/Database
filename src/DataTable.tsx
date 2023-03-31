@@ -43,30 +43,31 @@ function DataTable({ setData, data, columns, setColumns }: DataTableProps) {
   return (
     <>
       <div className="TableControls">
-        {modifyColumns == 0 && (
-          <>
-            <th>
-              <button
-                onClick={() => AddNewElement({ data, setData, setModify })}
-              >
-                Add new element
-              </button>
-            </th>
-            <th>
-              <button onClick={() => returnJson(data, columns)}>
-                Create Copy
-              </button>
-            </th>
-          </>
-        )}
         <th>
           <EditTableIndexes
             columns={columns}
             setColumns={setColumns}
             modifyColumns={modifyColumns}
             setModifyColumns={setModifyColumns}
+            text="Edit columns"
           />
         </th>
+        {modifyColumns == 0 && (
+          <>
+            <th>
+              <button
+                onClick={() => AddNewElement({ data, setData, setModify })}
+              >
+                New element
+              </button>
+            </th>
+            <th>
+              <button onClick={() => returnJson(data, columns)}>
+                Save JSON
+              </button>
+            </th>
+          </>
+        )}
       </div>
       <table className="MainTable">
         <thead>
@@ -76,9 +77,9 @@ function DataTable({ setData, data, columns, setColumns }: DataTableProps) {
                 {columns.map((column, index) => (
                   <th key={index + column.name + column.type}>{column.name}</th>
                 ))}
+                <th>modify</th>
               </>
             )}
-            <th>modify</th>
           </tr>
         </thead>
         <tbody>
