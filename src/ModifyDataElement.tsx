@@ -47,7 +47,7 @@ function ModifyElement({
       );
       return;
     }
-    if (generatekey(config.promptcheck) === false) {
+    if (generatekey(config) === false) {
       return;
     }
     setModify(usId);
