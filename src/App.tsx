@@ -41,11 +41,12 @@ function App() {
       <div className="DataTable">
         {data.length > 0 && (
           <DataTable
-            setData={setData}
             data={data}
             columns={columns}
-            setColumns={setColumns}
             config={config}
+            setColumns={setColumns}
+            setConfig={setConfig}
+            setData={setData}
           />
         )}
       </div>
