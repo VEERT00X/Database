@@ -31,8 +31,9 @@ export default function Config({
 }: Configure) {
   const isConfigured = () => {
     let res = generatekey(config);
-    if (res === false) {
+    if (res != true) {
       setModifyColumns(0);
+      return;
     }
     setModifyColumns(1);
   };
