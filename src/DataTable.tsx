@@ -55,35 +55,39 @@ function DataTable({
         <table className="TableControls">
           <thead>
             <tr>
-            <th>
-              <Control
-                columns={columns}
-                setColumns={setColumns}
-                modifyColumns={modifyColumns}
-                setModifyColumns={setModifyColumns}
-                config={config}
-                setconfig={setConfig}
-                text="Edit columns"
-              />
-            </th>
-            {modifyColumns == 0 && (
-              <>
-                <th>
-                  <button
-                    onClick={() =>
-                      AddNewElement({ data, setData, setModify, config })
-                    }
-                  >
-                    New element
-                  </button>
-                </th>
-                <th>
-                  <button onClick={() => returnJson(data, columns, config)}>
-                    Save JSON
-                  </button>
-                </th>
-              </>
-            )}
+              <th className="Secondary">
+                <Control
+                  columns={columns}
+                  setColumns={setColumns}
+                  modifyColumns={modifyColumns}
+                  setModifyColumns={setModifyColumns}
+                  config={config}
+                  setconfig={setConfig}
+                  text="Edit columns"
+                />
+              </th>
+              {modifyColumns == 0 && (
+                <>
+                  <th className="Secondary">
+                    <button
+                      className="width-100"
+                      onClick={() =>
+                        AddNewElement({ data, setData, setModify, config })
+                      }
+                    >
+                      New element
+                    </button>
+                  </th>
+                  <th className="Secondary">
+                    <button
+                      className="width-100"
+                      onClick={() => returnJson(data, columns, config)}
+                    >
+                      Save JSON
+                    </button>
+                  </th>
+                </>
+              )}
             </tr>
           </thead>
         </table>

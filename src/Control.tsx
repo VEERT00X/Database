@@ -42,7 +42,7 @@ export default function Config({
       {modifyColumns === 0 && (
         <button
           type="button"
-          className="btn btn-primary"
+          className="btn btn-primary width-100"
           onClick={() => isConfigured()}
         >
           {text}

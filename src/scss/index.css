@@ -1,18 +1,117 @@
+.App {
+  background-color: #f5f5f5;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.App-header {
+  background-color: #2e7d32;
+  color: #fff;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.GetJsonDataButton {
+  margin-bottom: 20px;
+}
+
+.DataTable {
+  border: 1px solid #bdbdbd;
+  padding: 10px;
+  background-color: #f9fbe7;
+  border-radius: 5px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
 td {
-  overflow: word-wrap;
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #bdbdbd;
 }
 
-.small {
-  max-width: 80px;
-  overflow-wrap: break-word;
+th {
+  background-color: #2e7d32;
+  color: #fff;
 }
 
-input[type=text] {
-  width: 80%;
-  overflow-wrap: break-word;
+tr:nth-child(even) {
+  background-color: #f2f2f2;
 }
 
-.DataTableContainer {
-  overflow-x: break-word;
-  width: 70%;
+tr:hover {
+  background-color: #e6f4ea;
+  cursor: pointer;
+}
+
+.Modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ModalContent {
+  background-color: #fff;
+  border: 1px solid #bdbdbd;
+  border-radius: 5px;
+  padding: 20px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.ModalTitle {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.ModalInput {
+  display: block;
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #bdbdbd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+Button {
+  background-color: #2e7d32;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  font-size: 16px;
+  margin: 8px 4px 8px 4;
+  width: auto;
+  cursor: cell;
+  border-radius: 25px;
+  transition: background-color 0.3s ease;
+}
+
+.ModalButton:hover {
+  background-color: #205823;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.Secondary {
+  background-color: #f9fbe7;
+  padding-bottom: 20px;
 }/*# sourceMappingURL=index.css.map */
