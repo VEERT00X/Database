@@ -40,11 +40,7 @@ export default function Config({
   return (
     <>
       {modifyColumns === 0 && (
-        <button
-          type="button"
-          className="btn btn-primary width-100"
-          onClick={() => isConfigured()}
-        >
+        <button type="button" className="w-100" onClick={() => isConfigured()}>
           {text}
         </button>
       )}
@@ -97,7 +93,7 @@ export default function Config({
                   <td>
                     <button
                       type="button"
-                      className="btn btn-primary"
+                      className="btn btn-primary w-50"
                       onClick={() => {
                         const newColumns = [...columns];
                         newColumns.push({ name: "New Column", type: "string" });
@@ -108,7 +104,7 @@ export default function Config({
                     </button>
                     <button
                       type="button"
-                      className="btn btn-primary"
+                      className="btn btn-primary w-50"
                       onClick={() => setModifyColumns(0)}
                     >
                       Save

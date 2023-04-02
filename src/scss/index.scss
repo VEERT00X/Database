@@ -92,31 +92,55 @@ tr:hover {
 }
 
 Button {
-    background-color: $primary-color;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    text-align: center;
-    font-size: 16px;
-    margin: 8px 4px 8px 4;
+    background-color: $primary-color !important;
+    border: none !important;
+    color: white !important;
+    padding: 15px 32px !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    text-align: center !important;
+    font-size: 16px !important;
+    margin-bottom: 5px !important;
     width: auto;
-    cursor: cell;
-    border-radius: 25px;
-    transition: background-color 0.3s ease;
+    cursor: cell !important;
+    border-radius: 25px !important;
+    transition: background-color 0.3s ease !important;
 }
 
 .ModalButton:hover {
     background-color: darken($primary-color, 10%);
 }
 
-.width-100 {
-    width: 100%;
-}
 
 .Secondary {
     background-color: $secondary-color;
     padding-bottom: 20px;
+}
+
+.primary{
+    background-color: $primary-color;
+}
+
+.EditTableColumns{
+    p{
+        color: $primary-color;
+        text-align: center;
+    }
+    h1{
+        color: $primary-color;
+    }
+    button{
+        width: 100%;
+    }
+}
+
+.EditTableConfig{
+    td{
+        color: $primary-color;
+        text-align: center;
+    }
+    h1{
+        color: $primary-color;
+    }
 }

@@ -70,7 +70,7 @@ function DataTable({
                 <>
                   <th className="Secondary">
                     <button
-                      className="width-100"
+                      className="w-100"
                       onClick={() =>
                         AddNewElement({ data, setData, setModify, config })
                       }
@@ -80,7 +80,7 @@ function DataTable({
                   </th>
                   <th className="Secondary">
                     <button
-                      className="width-100"
+                      className="w-100"
                       onClick={() => returnJson(data, columns, config)}
                     >
                       Save JSON
