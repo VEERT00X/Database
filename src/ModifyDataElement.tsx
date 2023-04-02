@@ -2,17 +2,17 @@ import generatekey from "./ts/generatekey";
 
 interface DataTableElement {
   id: number;
-  name: string;
-  surname: string;
-  nickname: string;
-  age: string;
-  email: string;
-  telephone: string;
-  address: string;
-  city: string;
-  country: string;
-  relationship: string;
-  status: string;
+  // name: string;
+  // surname: string;
+  // nickname: string;
+  // age: string;
+  // email: string;
+  // telephone: string;
+  // address: string;
+  // city: string;
+  // country: string;
+  // relationship: string;
+  // status: string;
 }
 
 function ModifyElement({
