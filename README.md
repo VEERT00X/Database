@@ -26,3 +26,5 @@ The application is built using the React framework, and also makes use of the fo
 ## Conclusion
 
 The JSON Database is a simple, yet effective application that allows users to quickly and easily view data from a JSON file. It is built using the React framework, and is easy to customize and extend as needed.
+
+©VEERT00X
