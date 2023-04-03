@@ -46,11 +46,35 @@ export default function Config({
       )}
       {modifyColumns === 1 && (
         <>
-          <div className="EditTableColumns">
-            <h1>Columns</h1>
+          <div className="EditTable">
             <table>
               <thead>
                 <tr>
+                  <td>
+                    <button
+                      type="button"
+                      className="w-50"
+                      onClick={() => {
+                        setModifyColumns(0);
+                      }}
+                    >
+                      Back
+                    </button>
+                    <button
+                      type="button"
+                      className="w-50"
+                      onClick={() => {
+                        const newColumns = [...columns];
+                        newColumns.push({ name: "New Column", type: "string" });
+                        setColumns(newColumns);
+                      }}
+                    >
+                      New
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Column</td>
                   {columns.map((column, index) => (
                     <td key={index}>
                       {index !== 0 && (
@@ -66,13 +90,11 @@ export default function Config({
                       )}
                     </td>
                   ))}
-                  <td>
-                    <p>Tools</p>
-                  </td>
                 </tr>
               </thead>
               <tbody>
                 <tr>
+                  <td>Tools</td>
                   {columns.map((column, index) => (
                     <td key={index + column.name + column.type}>
                       {index !== 0 && (
@@ -85,51 +107,30 @@ export default function Config({
                             setColumns(newColumns);
                           }}
                         >
-                          Delete
+                          Delete Column
                         </button>
                       )}
                     </td>
                   ))}
-                  <td>
-                    <button
-                      type="button"
-                      className="btn btn-primary w-50"
-                      onClick={() => {
-                        const newColumns = [...columns];
-                        newColumns.push({ name: "New Column", type: "string" });
-                        setColumns(newColumns);
-                      }}
-                    >
-                      New
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-primary w-50"
-                      onClick={() => setModifyColumns(0)}
-                    >
-                      Save
-                    </button>
-                  </td>
                 </tr>
               </tbody>
-            </table>
-          </div>
-          <div className="EditTableConfig">
-            <h1>Config</h1>
-            <table>
               <thead>
                 <tr>
                   <td>Settings</td>
-                  {Object.keys(config[0]).map((key) => (
-                    <td key={key}>{key}</td>
-                  ))}
+                  <td></td>
+                  {config.map((row: any, index: number) =>
+                    Object.values(row).map((value: any, index) => (
+                      <td key={index}>{Object.keys(row)[index]}</td>
+                    ))
+                  )}
                 </tr>
               </thead>
               <tbody>
-                {config.map((row: any, index: any) => (
-                  <tr key={index}>
-                    <td>Value</td>
-                    {Object.values(row).map((value: any, index) => (
+                <tr>
+                  <td>Value</td>
+                  <td></td>
+                  {config.map((row: any, index: number) =>
+                    Object.values(row).map((value: any, index) => (
                       <td key={index}>
                         {typeof value === "string" && (
                           <input
@@ -168,14 +169,13 @@ export default function Config({
                           />
                         )}
                       </td>
-                    ))}
-                  </tr>
-                ))}
+                    ))
+                  )}
+                </tr>
               </tbody>
             </table>
           </div>
         </>
-        // so the code of the cheakbox dosent work for now so you will have to wait for the next update
       )}
     </>
   );
