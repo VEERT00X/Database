@@ -1,17 +1,18 @@
-$primary-color: #2e7d32;
-$secondary-color: #f9fbe7;
-$background-color: #f5f5f5;
-$border-color: #bdbdbd;
-
+:root {
+--primary-color: #2e7d32;
+--secondary-color: #f9fbe7;
+--background-color: #f5f5f5;
+--border-color: #bdbdbd;
+}
 
 .App {
-    background-color: $background-color;
+    background-color: var(--background-color);
     padding: 20px;
     font-family: Arial, sans-serif;
 }
 
 .App-header {
-    background-color: $primary-color;
+    background-color: var(--primary-color);
     color: #fff;
     padding: 10px;
     margin-bottom: 20px;
@@ -22,9 +23,9 @@ $border-color: #bdbdbd;
 }
 
 .DataTable {
-    border: 1px solid $border-color;
+    border: 1px solid var(--border-color);
     padding: 10px;
-    background-color: $secondary-color;
+    background-color: var(--secondary-color);
     border-radius: 5px;
 }
 
@@ -37,11 +38,11 @@ th,
 td {
     text-align: left;
     padding: 8px;
-    border-bottom: 1px solid $border-color;
+    border-bottom: 1px solid var(--border-color);
 }
 
 th {
-    background-color: $primary-color;
+    background-color: var(--primary-color);
     color: #fff;
 }
 
@@ -68,7 +69,7 @@ tr:hover {
 
 .ModalContent {
     background-color: #fff;
-    border: 1px solid $border-color;
+    border: 1px solid var(--border-color);
     border-radius: 5px;
     padding: 20px;
     max-width: 500px;
@@ -87,13 +88,13 @@ tr:hover {
     margin-bottom: 10px;
     width: 100%;
     padding: 5px;
-    border: 1px solid $border-color;
+    border: 1px solid var(--border-color);
     border-radius: 5px;
     font-size: 16px;
 }
 
 Button {
-    background-color: $primary-color !important;
+    background-color: var(--primary-color) !important;
     border: none !important;
     color: white !important;
     padding: 15px 32px !important;
@@ -109,43 +110,39 @@ Button {
     transition: background-color 0.3s ease !important;
 }
 
-.ModalButton:hover {
-    background-color: darken($primary-color, 10%);
-}
-
 
 .Secondary {
-    background-color: $secondary-color;
+    background-color: var(--secondary-color);
     padding-bottom: 20px;
 }
 
 .primary{
-    background-color: $primary-color;
+    background-color: var(--primary-color);
 }
 
 .EditTable{
 
     table td:first-child {
-        background-color: $primary-color;
+        background-color: var(--primary-color);
         color: #fff;
     }
 
     p{
-        color: $primary-color;
+        color: var(--primary-color);
         text-align: center;
     }
     h1{
-        color: $primary-color;
+        color: var(--primary-color);
     }
     button{
         width: 100%;
     }
     td{
-        color: $primary-color;
+        color: var(--primary-color);
         text-align: center;
     }
     h1{
-        color: $primary-color;
+        color: var(--primary-color);
     }
 }
 

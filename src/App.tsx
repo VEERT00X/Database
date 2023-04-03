@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import DataTable from "./DataTable";
-import "./scss/index.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 interface DataTableElement {

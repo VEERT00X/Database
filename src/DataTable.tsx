@@ -3,6 +3,7 @@ import ModifyElement from "./ModifyDataElement";
 import AddNewElement from "./CreateNewElement";
 import returnJson from "./ts/returnJsonfile";
 import Control from "./Control";
+import defstylesheet from "./ts/defstylesheet";
 
 type DataType = "string" | "number"; // define possible data types
 
@@ -31,6 +32,7 @@ function DataTable({
   const [modify, setModify] = useState<any>(0);
   const [modifyData, setModifyData] = useState<any>({});
   const [modifyColumns, setModifyColumns] = useState<any>(0);
+  defstylesheet(config);
 
   const renderCell = (row: any, column: Column) => {
     if (modify === row.id && column.name !== "id") {

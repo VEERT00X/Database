@@ -129,41 +129,47 @@ export default function Config({
                 <tr>
                   <td>Value</td>
                   <td></td>
-                  {config.map((row: any, index: number) =>
-                    Object.values(row).map((value: any, index) => (
-                      <td key={index}>
+                  {config.map((row: any, rowIndex: number) =>
+                    Object.values(row).map((value: any, valueIndex: number) => (
+                      <td key={`${rowIndex}-${valueIndex}`}>
                         {typeof value === "string" && (
                           <input
+                            key={`${rowIndex}-${valueIndex}-input`}
                             type="text"
                             value={value}
                             onChange={(e) => {
                               let newConfig = [...config];
-                              newConfig[index][Object.keys(row)[index]] =
-                                e.target.value;
+                              newConfig[rowIndex][
+                                Object.keys(row)[valueIndex]
+                              ] = e.target.value;
                               setconfig(newConfig);
                             }}
                           />
                         )}
                         {typeof value === "number" && (
                           <input
+                            key={`${rowIndex}-${valueIndex}-input`}
                             type="number"
                             value={value}
                             onChange={(e) => {
                               let newConfig = [...config];
-                              newConfig[index][Object.keys(row)[index]] =
-                                e.target.value;
+                              newConfig[rowIndex][
+                                Object.keys(row)[valueIndex]
+                              ] = e.target.value;
                               setconfig(newConfig);
                             }}
                           />
                         )}
                         {typeof value === "boolean" && (
                           <input
+                            key={`${rowIndex}-${valueIndex}-input`}
                             type="checkbox"
                             checked={value}
                             onChange={(e) => {
                               let newConfig = [...config];
-                              newConfig[index][Object.keys(row)[index]] =
-                                e.target.checked;
+                              newConfig[rowIndex][
+                                Object.keys(row)[valueIndex]
+                              ] = e.target.checked;
                               setconfig(newConfig);
                             }}
                           />
