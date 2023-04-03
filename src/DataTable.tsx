@@ -3,6 +3,7 @@ import ModifyElement from "./ModifyDataElement";
 import AddNewElement from "./CreateNewElement";
 import returnJson from "./ts/returnJsonfile";
 import Control from "./Control";
+import defstylesheet from "./ts/defstylesheet";
 
 type DataType = "string" | "number"; // define possible data types
 
@@ -31,6 +32,7 @@ function DataTable({
   const [modify, setModify] = useState<any>(0);
   const [modifyData, setModifyData] = useState<any>({});
   const [modifyColumns, setModifyColumns] = useState<any>(0);
+  defstylesheet(config);
 
   const renderCell = (row: any, column: Column) => {
     if (modify === row.id && column.name !== "id") {
@@ -55,35 +57,39 @@ function DataTable({
         <table className="TableControls">
           <thead>
             <tr>
-            <th>
-              <Control
-                columns={columns}
-                setColumns={setColumns}
-                modifyColumns={modifyColumns}
-                setModifyColumns={setModifyColumns}
-                config={config}
-                setconfig={setConfig}
-                text="Edit columns"
-              />
-            </th>
-            {modifyColumns == 0 && (
-              <>
-                <th>
-                  <button
-                    onClick={() =>
-                      AddNewElement({ data, setData, setModify, config })
-                    }
-                  >
-                    New element
-                  </button>
-                </th>
-                <th>
-                  <button onClick={() => returnJson(data, columns, config)}>
-                    Save JSON
-                  </button>
-                </th>
-              </>
-            )}
+              <th className="Secondary">
+                <Control
+                  columns={columns}
+                  setColumns={setColumns}
+                  modifyColumns={modifyColumns}
+                  setModifyColumns={setModifyColumns}
+                  config={config}
+                  setconfig={setConfig}
+                  text="Edit columns"
+                />
+              </th>
+              {modifyColumns == 0 && (
+                <>
+                  <th className="Secondary">
+                    <button
+                      className="w-100"
+                      onClick={() =>
+                        AddNewElement({ data, setData, setModify, config })
+                      }
+                    >
+                      New element
+                    </button>
+                  </th>
+                  <th className="Secondary">
+                    <button
+                      className="w-100"
+                      onClick={() => returnJson(data, columns, config)}
+                    >
+                      Save JSON
+                    </button>
+                  </th>
+                </>
+              )}
             </tr>
           </thead>
         </table>

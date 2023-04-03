@@ -40,21 +40,41 @@ export default function Config({
   return (
     <>
       {modifyColumns === 0 && (
-        <button
-          type="button"
-          className="btn btn-primary"
-          onClick={() => isConfigured()}
-        >
+        <button type="button" className="w-100" onClick={() => isConfigured()}>
           {text}
         </button>
       )}
       {modifyColumns === 1 && (
         <>
-          <div className="EditTableColumns">
-            <h1>Columns</h1>
+          <div className="EditTable">
             <table>
               <thead>
                 <tr>
+                  <td>
+                    <button
+                      type="button"
+                      className="w-50"
+                      onClick={() => {
+                        setModifyColumns(0);
+                      }}
+                    >
+                      Back
+                    </button>
+                    <button
+                      type="button"
+                      className="w-50"
+                      onClick={() => {
+                        const newColumns = [...columns];
+                        newColumns.push({ name: "New Column", type: "string" });
+                        setColumns(newColumns);
+                      }}
+                    >
+                      New
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Column</td>
                   {columns.map((column, index) => (
                     <td key={index}>
                       {index !== 0 && (
@@ -70,13 +90,11 @@ export default function Config({
                       )}
                     </td>
                   ))}
-                  <td>
-                    <p>Tools</p>
-                  </td>
                 </tr>
               </thead>
               <tbody>
                 <tr>
+                  <td>Tools</td>
                   {columns.map((column, index) => (
                     <td key={index + column.name + column.type}>
                       {index !== 0 && (
@@ -89,97 +107,81 @@ export default function Config({
                             setColumns(newColumns);
                           }}
                         >
-                          Delete
+                          Delete Column
                         </button>
                       )}
                     </td>
                   ))}
-                  <td>
-                    <button
-                      type="button"
-                      className="btn btn-primary"
-                      onClick={() => {
-                        const newColumns = [...columns];
-                        newColumns.push({ name: "New Column", type: "string" });
-                        setColumns(newColumns);
-                      }}
-                    >
-                      New
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-primary"
-                      onClick={() => setModifyColumns(0)}
-                    >
-                      Save
-                    </button>
-                  </td>
                 </tr>
               </tbody>
-            </table>
-          </div>
-          <div className="EditTableConfig">
-            <h1>Config</h1>
-            <table>
               <thead>
                 <tr>
                   <td>Settings</td>
-                  {Object.keys(config[0]).map((key) => (
-                    <td key={key}>{key}</td>
-                  ))}
+                  <td></td>
+                  {config.map((row: any, index: number) =>
+                    Object.values(row).map((value: any, index) => (
+                      <td key={index}>{Object.keys(row)[index]}</td>
+                    ))
+                  )}
                 </tr>
               </thead>
               <tbody>
-                {config.map((row: any, index: any) => (
-                  <tr key={index}>
-                    <td>Value</td>
-                    {Object.values(row).map((value: any, index) => (
-                      <td key={index}>
+                <tr>
+                  <td>Value</td>
+                  <td></td>
+                  {config.map((row: any, rowIndex: number) =>
+                    Object.values(row).map((value: any, valueIndex: number) => (
+                      <td key={`${rowIndex}-${valueIndex}`}>
                         {typeof value === "string" && (
                           <input
+                            key={`${rowIndex}-${valueIndex}-input`}
                             type="text"
                             value={value}
                             onChange={(e) => {
                               let newConfig = [...config];
-                              newConfig[index][Object.keys(row)[index]] =
-                                e.target.value;
+                              newConfig[rowIndex][
+                                Object.keys(row)[valueIndex]
+                              ] = e.target.value;
                               setconfig(newConfig);
                             }}
                           />
                         )}
                         {typeof value === "number" && (
                           <input
+                            key={`${rowIndex}-${valueIndex}-input`}
                             type="number"
                             value={value}
                             onChange={(e) => {
                               let newConfig = [...config];
-                              newConfig[index][Object.keys(row)[index]] =
-                                e.target.value;
+                              newConfig[rowIndex][
+                                Object.keys(row)[valueIndex]
+                              ] = e.target.value;
                               setconfig(newConfig);
                             }}
                           />
                         )}
                         {typeof value === "boolean" && (
                           <input
+                            key={`${rowIndex}-${valueIndex}-input`}
                             type="checkbox"
                             checked={value}
                             onChange={(e) => {
                               let newConfig = [...config];
-                              newConfig[index][Object.keys(row)[index]] =
-                                e.target.checked;
+                              newConfig[rowIndex][
+                                Object.keys(row)[valueIndex]
+                              ] = e.target.checked;
                               setconfig(newConfig);
                             }}
                           />
                         )}
                       </td>
-                    ))}
-                  </tr>
-                ))}
+                    ))
+                  )}
+                </tr>
               </tbody>
             </table>
           </div>
         </>
-        // so the code of the cheakbox dosent work for now so you will have to wait for the next update
       )}
     </>
   );
