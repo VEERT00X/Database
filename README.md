@@ -1,5 +1,6 @@
-# Database
+# New JSON Database
 
+#### Looking for the [legacy version](https://github.com/VEERT00X/PeopleDatabase)?
 ---
 
 This is a simple database application that reads and displays data from a JSON file. The application is built using the React framework and allows users to upload a JSON file, which is then parsed and displayed in a table format.
@@ -27,4 +28,5 @@ The application is built using the React framework, and also makes use of the fo
 
 The JSON Database is a simple, yet effective application that allows users to quickly and easily view data from a JSON file. It is built using the React framework, and is easy to customize and extend as needed.
 
-©VEERT00X
+The code is issued under MIT license  
+[©VEERT00X](https://github.com/VEERT00X/) 2023
