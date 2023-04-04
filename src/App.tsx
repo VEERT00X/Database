@@ -56,7 +56,12 @@ function App() {
               document.getElementById("click")?.click();
             }}
           >
-            <input type="file" id="click" onChange={handleJsonUpload} />
+            <input
+              type="file"
+              id="click"
+              accept="application/json"
+              onChange={handleJsonUpload}
+            />
             File Upload
           </div>
         )}
