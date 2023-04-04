@@ -11,6 +11,19 @@ function App() {
   const [columns, setColumns] = useState<any[]>([]);
   const [config, setConfig] = useState<any[]>([]);
 
+  function createNewDatabase() {
+    const newdata = [{ id: 1 }];
+    const newcolumns = [{ name: "id", type: "number" }];
+    const newconfig = [
+      { promptcheck: false },
+      { primarycolor: "" },
+      { secondarycolor: "" },
+    ];
+    setData(newdata);
+    setColumns(newcolumns);
+    setConfig(newconfig);
+  }
+
   function handleJsonUpload(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
     if (!file) return;
@@ -36,7 +49,20 @@ function App() {
     <div className="App">
       <h1 className="App-header">Database</h1>
       <div className="GetJsonDataButton">
-        {data.length == 0 && <input type="file" onChange={handleJsonUpload} />}
+        {data.length == 0 && (
+          <div
+            className="upload-btn"
+            onClick={() => {
+              document.getElementById("click")?.click();
+            }}
+          >
+            <input type="file" id="click" onChange={handleJsonUpload} />
+            File Upload
+          </div>
+        )}
+        {data.length == 0 && (
+          <button onClick={createNewDatabase}>New Database</button>
+        )}
       </div>
       <div className="DataTable">
         {data.length > 0 && (

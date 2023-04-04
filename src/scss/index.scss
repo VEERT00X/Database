@@ -1,8 +1,8 @@
 :root {
---primary-color: #2e7d32;
---secondary-color: #f9fbe7;
---background-color: #f5f5f5;
---border-color: #bdbdbd;
+    --primary-color: #2e7d32;
+    --secondary-color: #f9fbe7;
+    --background-color: #f5f5f5;
+    --border-color: #bdbdbd;
 }
 
 .App {
@@ -116,36 +116,71 @@ Button {
     padding-bottom: 20px;
 }
 
-.primary{
+.primary {
     background-color: var(--primary-color);
 }
 
-.EditTable{
+.EditTable {
 
     table td:first-child {
         background-color: var(--primary-color);
         color: #fff;
     }
 
-    p{
+    p {
         color: var(--primary-color);
         text-align: center;
     }
-    h1{
+
+    h1 {
         color: var(--primary-color);
     }
-    button{
+
+    button {
         width: 100%;
     }
-    td{
+
+    td {
         color: var(--primary-color);
         text-align: center;
     }
-    h1{
+
+    h1 {
         color: var(--primary-color);
     }
 }
 
-.btn-control{
+.btn-control {
     padding: 8px;
 }
+
+.upload-btn {
+    background-color: var(--primary-color) !important;
+    border: none !important;
+    color: white !important;
+    padding: 15px 32px !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    text-align: center !important;
+    font-size: 16px !important;
+    margin-bottom: 5px !important;
+    width: auto;
+    cursor: cell !important;
+    border-radius: 25px !important;
+    transition: background-color 0.3s ease !important;
+    margin-right: 5px;
+}
+
+input[type='file'] {
+    color: transparent;
+    width: 0;
+}
+
+input[type=file]::-webkit-file-upload-button {
+    opacity: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    width: 0;
+    }

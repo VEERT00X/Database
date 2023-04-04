@@ -59,8 +59,8 @@ function ModifyElement({
   };
 
   return (
-    <div>
-      <button className="" onClick={startModify}>
+      <>
+      <button onClick={startModify}>
         {Modify === usId ? "Save" : "Modify"}
       </button>
       {Modify === usId ? <button onClick={cancelModify}>Cancel</button> : null}
@@ -74,7 +74,7 @@ function ModifyElement({
           Delete
         </button>
       ) : null}
-    </div>
+    </>
   );
 }
 

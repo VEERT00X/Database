@@ -99,10 +99,12 @@ function DataTable({
           <tr>
             {modifyColumns == 0 && (
               <>
+                {columns.length !== 1 && <>
                 {columns.map((column, index) => (
                   <th key={index + column.name + column.type}>{column.name}</th>
                 ))}
-                <th>modify</th>
+                  < th className="text-left">modify</th>
+                </>}
               </>
             )}
           </tr>
@@ -113,7 +115,7 @@ function DataTable({
               {data.map((row) => (
                 <tr key={row.id + row.name}>
                   {columns.map((column) => renderCell(row, column))}
-                  <td>
+                  <td>{columns.length !== 1 &&
                     <ModifyElement
                       data={data}
                       setData={setData}
@@ -123,7 +125,7 @@ function DataTable({
                       ModifyData={modifyData}
                       setModifyData={setModifyData}
                       config={config}
-                    />
+                    />}
                   </td>
                 </tr>
               ))}
